@@ -4,29 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ClimateVerse</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./pages/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 <body>
-    <nav class="navbar">
-        <div class="navbar-container">
-            <div class="logo"><a href="index.html"><h1>ClimateVerse</h1></a></div>
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="tool.html" class="nav-link">Tools</a></li>
-                <li class="nav-item"><a href="blogs.html" class="nav-link">blogs</a></li>
-                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="cta-buttons">
-                <a href="index.html" class="btn primary-btn">Action</a>
-                <!-- <a href="tool.html" class="btn secondary-btn">Try for Free</a> -->
-            </div>
-            <div class="menu-toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
+   <div id="header"></div>
 
     <section class="hero">
         <div class="hero-left">
@@ -39,43 +22,74 @@
             <img src="res/hero.png" alt="Hero Image" class="hero-image">
         </div>
     </section>
-    <!--data section-->
-    <section class="data">
-        <div class="container-a">
-            <h1 class="title-a">Global Temperature Anomaly</h1>
-            <div class="heading">+1.2C</div>
-        </div>
-        <div class="container-a">
-            <h1 class="title-a">Current C0<sub>2</sub> Level</h1>
-            <div class="heading">419 pmm</div>
-        </div>
-        <div class="container-a" id="container-a">
-            <h1 class="title-a">Sea Ice Extent</h1>
-            <div class="heading">5.7 million km²</div>
-        </div>
-    </section>
+  
+<!--new data-->
+<section class="data">
+    <div class="container-a">
+        <h1 class="title-a">Global Temperature Anomaly</h1>
+        <div class="heading">+1.2°C</div>
+    </div>
+    <div class="container-a">
+        <h1 class="title-a">Current CO<sub>2</sub> Level</h1>
+        <div class="heading">419 ppm</div>
+    </div>
+    <div class="container-a">
+        <h1 class="title-a">Sea Ice Extent</h1>
+        <div class="heading">5.7 million km²</div>
+    </div>
+</section>
+ <!-- <section class="circle-cards">
+        <h2>Actionable Resources</h2>
+        <div class="card-container">
+         <a href="">
+            <div class="card">
+            <img src="res/1.png" alt="Air Quality Index">
+          </div>
+          <h3>Air Quality Index</h3>
+          </a>
 
-   
-    <section class="hero">
-        <div class="hero-left-intro">
-            <h1 class="introduction">Climate action is a critical imperative for the health and sustainability of our
-                planet. As the Earth's climate continues to change due to human activities, we are
-                witnessing unprecedented impacts on the environment, economies, and societies
-                worldwide. Taking immediate and sustained action to mitigate climate change
-                and adapt to its effects is essential for ensuring a livable future for all.
-                
-                In conclusion, climate action is not just an environmental issue but a
-                comprehensive challenge that affects all aspects of life. By taking urgent and
-                concerted action, we can mitigate the adverse effects of climate change, adapt to
-                its impacts, and create a sustainable and equitable future for all.</h1>
-        </div>
-        <div class="hero-right-intro">
-            <img src="res/Glacier Melting (online-video-cutter.com).gif" alt="Hero Image" class="hero-image">
-        </div>
-    </section>
+          <a href="">
+            <div class="card">
+            <img src="res/2.png" alt="Air Quality Index">
+          </div>
+          <h3>Air Quality Index</h3>
+          </a>
 
-    <section class="tools">
-       <div class="tools-title">Tools</div>
+          <a href="">
+            <div class="card">
+            <img src="res/3.png" alt="Air Quality Index">
+          </div>
+          <h3 id="">Air Quality Index</h3>
+          </a>
+
+          <a href="">
+            <div class="card">
+            <img src="res/4.png" alt="Air Quality Index">
+          </div>
+          <h3 id="">Air Quality Index</h3>
+          </a>
+          </div>
+      </section> -->
+      <section class="container-foooter">
+       
     </section>
+<div id="tool"></div>
+<div id="footer"></div>
+<script src="/js/app.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        fetch('tools.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.querySelector('#tools').innerHTML = data;
+            })
+            .catch(error => console.error('Error fetching tools template:', error));
+    });
+</script>
 </body>
 </html>

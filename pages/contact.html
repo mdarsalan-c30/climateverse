@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClimateVerse</title>
+    <link rel="stylesheet" href="/pages/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <!--header section-->
+   <div id="header"></div>
+<!--CONTENT SECTION-->
+<style>
+    .wrapper {
+           max-width: 600px;
+           margin: 50px auto;
+           padding: 20px;
+           background: #fff;
+           box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+       }
+       #h9 {
+           color: #333;
+       }
+       #pp {
+           color: #555;
+       }
+       form {
+           display: flex;
+           flex-direction: column;
+       }
+       label {
+           margin: 10px 0 5px;
+       }
+       input, textarea {
+           padding: 10px;
+           border: 1px solid #ccc;
+           border-radius: 5px;
+           font-size: 16px;
+           width: 100%;
+           box-sizing: border-box;
+       }
+       button {
+           margin-top: 20px;
+           padding: 10px;
+           background-color: #0056b3;
+           color: white;
+           border: none;
+           border-radius: 5px;
+           font-size: 16px;
+           cursor: pointer;
+       }
+       button:hover {
+           background-color: #004099;
+       }
+       @media (max-width: 600px) {
+           .container {
+               margin: 20px;
+               padding: 15px;
+           }
+       }
+</style>
+<body>
+   <!--header section-->
+   <div id="header"></div>
+   <div class="pattern-bg"></div>
+   <!-- Start of the IMG TO PDF CONVERTER -->
+   <div class="wrapper">
+       <h1 id="h9">Contact Us</h1>
+       <p id="pp">If you have any questions or issues, please feel free to reach out to us. We're here to help!</p>
+       <form action="mailto:primiumacc@protonmail.com" method="post" enctype="text/plain">
+           <label for="name">Name</label>
+           <input type="text" id="name" name="name" required>
+           
+           <label for="email">Email</label>
+           <input type="email" id="email" name="email" required>
+           
+           <label for="problem">Describe your problem</label>
+           <textarea id="problem" name="problem" rows="5" required></textarea>
+           
+           <button type="submit">Send</button>
+       </form>
+   </div>
+
+<!--END OF CONTENR SECTION-->
+    
+   <!--footer section-->    
+<div id="footer"></div>
+<script src="app.js"></script>
+</body>
+</html>
