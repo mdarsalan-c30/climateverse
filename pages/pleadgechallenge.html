@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Calculator</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* .wrapper {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        } */
+    
+
+        .wrapper {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    margin: 50px auto;
+    padding: 20px;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('background.jpg'); 
+    background-size: cover;
+    background-position: center;
+} 
+
+.container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    text-align: center;
+}
+
+#head {
+    color: #4CAF50;
+    font-size: 2em;
+}
+
+h2 {
+    color: #333;
+}
+
+.pledge-selection, .custom-pledge {
+    margin-bottom: 20px;
+}
+
+select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.pledge-output {
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #e0f7fa;
+    color: #006064;
+    box-shadow: 0 0 10px rgba(0, 96, 100, 0.2);
+    display: none;
+}
+
+#shareBtn {
+    margin-top: 20px;
+    display: none;
+    background-color: #1DA1F2;
+    font-size: 16px;
+}
+
+#shareBtn:hover {
+    background-color: #0d95e8;
+}
+
+
+    </style>
+</head>
+<body>
+    <!--header section-->
+    <div id="header"></div>
+
+    <!--CONTENT SECTION-->
+    <div class="wrapper">
+        <h1 id="head">🌍 Climate Pledge Generator 🌿</h1>
+        <p>Make a personal pledge to reduce your environmental impact and share it with the world!</p>
+
+        <div class="pledge-selection">
+            <h2>Select a Predefined Pledge</h2>
+            <select id="predefinedPledge" onchange="updateCustomPledge()">
+                <option value="">-- Select a Pledge --</option>
+                <option value="I pledge to reduce my plastic use by 50%.">I pledge to reduce my plastic use by 50%.</option>
+                <option value="I pledge to walk or bike instead of driving at least 3 times a week.">I pledge to walk or bike instead of driving at least 3 times a week.</option>
+                <option value="I pledge to switch to energy-efficient light bulbs.">I pledge to switch to energy-efficient light bulbs.</option>
+            </select>
+        </div>
+
+        <div class="custom-pledge">
+            <h2>Or Create Your Own Pledge</h2>
+            <textarea id="customPledge" placeholder="Enter your custom pledge here..."></textarea>
+        </div>
+
+        <button onclick="generatePledge()">Generate Pledge</button>
+
+        <h2>Your Pledge</h2>
+        <div id="pledgeOutput" class="pledge-output"></div>
+
+        <button id="shareBtn" onclick="sharePledge()" style="display: none;">Share on Social Media</button>
+   
+
+      
+    </div>
+
+    <!--footer section-->    
+    <div id="footer"></div>
+    <script src="app.js"></script>
+    <script>
+    
+    function updateCustomPledge() {
+    const predefinedPledge = document.getElementById("predefinedPledge").value;
+    const customPledge = document.getElementById("customPledge");
+
+    if (predefinedPledge) {
+        customPledge.value = predefinedPledge;
+    } else {
+        customPledge.value = '';
+    }
+}
+
+function generatePledge() {
+    const pledgeText = document.getElementById("customPledge").value.trim();
+
+    if (pledgeText) {
+        const pledgeOutput = document.getElementById("pledgeOutput");
+        pledgeOutput.textContent = pledgeText;
+
+        // Add an emoji or icon related to the pledge type
+        const emoji = getPledgeEmoji(pledgeText);
+        pledgeOutput.innerHTML = emoji + " " + pledgeText;
+
+        pledgeOutput.style.display = 'block';
+        document.getElementById("shareBtn").style.display = 'inline-block';
+    } else {
+        alert("Please enter or select a pledge!");
+    }
+}
+
+function getPledgeEmoji(pledgeText) {
+    if (pledgeText.includes('plastic')) {
+        return '♻️';
+    } else if (pledgeText.includes('bike') || pledgeText.includes('walk')) {
+        return '🚶‍♂️';
+    } else if (pledgeText.includes('energy')) {
+        return '💡';
+    } else {
+        return '🌍'; // General earth icon for other pledges
+    }
+}
+
+function sharePledge() {
+    const pledgeText = document.getElementById("pledgeOutput").textContent;
+    const shareText = encodeURIComponent(`I made a climate pledge: "${pledgeText}" #climateverse #ClimatePledge`);
+
+    const twitterShareUrl = `https://twitter.com/intent/tweet?text=${shareText}`;
+
+    window.open(twitterShareUrl, '_blank');
+}
+
+    </script>
+</body>
+</html>

@@ -29,7 +29,7 @@ function setupMenuToggle() {
 
 //TOOLS TEMPALET SCRIPt//
 
-fetch('./res/calc/tools.html') // Adjust path as needed
+fetch('./res/calc/tool.html') // Adjust path as needed
 .then(response => response.text())
 .then(data => {
     document.getElementById('tool').innerHTML = data;

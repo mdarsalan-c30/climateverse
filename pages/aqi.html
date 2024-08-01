@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Calculator</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .wrapper {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+       /* General Styling */
+#app {
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  text-align: center;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Input and Button Styling */
+#input-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+#locationInput {
+  width: 70%;
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  transition: border-color 0.3s ease-in-out;
+}
+
+#locationInput:focus {
+  border-color: #007BFF;
+}
+
+#searchBtn {
+  padding: 12px 20px;
+  font-size: 16px;
+  background-color: #007BFF;
+  color: #fff;
+  border: 2px solid #007BFF;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#searchBtn:hover {
+  background-color: #0056b3;
+}
+
+/* Result Styling */
+#result {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+  display: none;
+}
+
+#aqiValue {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#aqiDescription {
+  font-size: 24px;
+}
+
+.good {
+  color: #00E400;
+}
+
+.fair {
+  color: #FFFF00;
+}
+
+.moderate {
+  color: #FF7E00;
+}
+
+.poor {
+  color: #FF0000;
+}
+
+.very-poor {
+  color: #7E0023;
+}
+
+
+    </style>
+</head>
+<body>
+    <!--header section-->
+    <div id="header"></div>
+
+    <!--CONTENT SECTION-->
+    <div class="wrapper">
+      <div id="app">
+        <h1>Real-Time Air Quality Index (AQI) Finder</h1>
+        <div id="input-container">
+          <input type="text" id="locationInput" placeholder="Enter location">
+          <button id="searchBtn">Search</button>
+        </div>
+        <div id="result" class="hidden">
+          <div id="aqiValue"></div>
+          <div id="aqiDescription"></div>
+        </div>
+      </div>
+      
+    </div>
+
+    <!--footer section-->    
+    <div id="footer"></div>
+    <script src="app.js"></script>
+    <script>
+      const searchBtn = document.getElementById('searchBtn');
+const locationInput = document.getElementById('locationInput');
+const resultDiv = document.getElementById('result');
+const aqiValueDiv = document.getElementById('aqiValue');
+const aqiDescriptionDiv = document.getElementById('aqiDescription');
+
+// OpenWeatherMap API key
+const apiKey = '9273e3e5bc439648fef1c7763b7beb03';
+
+searchBtn.addEventListener('click', () => {
+  const location = locationInput.value;
+  fetchCoordinates(location);
+});
+
+function fetchCoordinates(location) {
+  const geoApiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${apiKey}`;
+
+  fetch(geoApiUrl)
+    .then(response => response.json())
+    .then(data => {
+      if (data.length > 0) {
+        const { lat, lon } = data[0];
+        fetchAQI(lat, lon);
+      } else {
+        showError('Location not found. Please enter a valid location.');
+      }
+    })
+    .catch(error => {
+      showError('Error fetching coordinates');
+      console.error('Error:', error);
+    });
+}
+
+function fetchAQI(lat, lon) {
+  const apiUrl = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      const aqi = data.list[0].main.aqi;
+      updateAQIUI(aqi);
+    })
+    .catch(error => {
+      showError('Error fetching AQI data');
+      console.error('Error:', error);
+    });
+}
+
+function updateAQIUI(aqi) {
+  let aqiText = '';
+  let aqiClass = '';
+
+  switch (aqi) {
+    case 1:
+      aqiText = 'Good';
+      aqiClass = 'good';
+      break;
+    case 2:
+      aqiText = 'Fair';
+      aqiClass = 'fair';
+      break;
+    case 3:
+      aqiText = 'Moderate';
+      aqiClass = 'moderate';
+      break;
+    case 4:
+      aqiText = 'Poor';
+      aqiClass = 'poor';
+      break;
+    case 5:
+      aqiText = 'Very Poor';
+      aqiClass = 'very-poor';
+      break;
+    default:
+      aqiText = 'Unknown';
+      break;
+  }
+
+  aqiValueDiv.textContent = `AQI: ${aqi}`;
+  aqiDescriptionDiv.textContent = aqiText;
+
+  // Apply the class to color-code the AQI
+  aqiValueDiv.className = aqiClass;
+  aqiDescriptionDiv.className = aqiClass;
+
+  // Show the result container
+  resultDiv.classList.remove('hidden');
+}
+
+function showError(message) {
+  resultDiv.innerHTML = `<p style="color: red;">${message}</p>`;
+  resultDiv.classList.remove('hidden');
+}
+
+    </script>
+</body>
+</html>

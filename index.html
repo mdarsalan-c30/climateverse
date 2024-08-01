@@ -38,38 +38,7 @@
         <div class="heading">5.7 million km²</div>
     </div>
 </section>
- <!-- <section class="circle-cards">
-        <h2>Actionable Resources</h2>
-        <div class="card-container">
-         <a href="">
-            <div class="card">
-            <img src="res/1.png" alt="Air Quality Index">
-          </div>
-          <h3>Air Quality Index</h3>
-          </a>
-
-          <a href="">
-            <div class="card">
-            <img src="res/2.png" alt="Air Quality Index">
-          </div>
-          <h3>Air Quality Index</h3>
-          </a>
-
-          <a href="">
-            <div class="card">
-            <img src="res/3.png" alt="Air Quality Index">
-          </div>
-          <h3 id="">Air Quality Index</h3>
-          </a>
-
-          <a href="">
-            <div class="card">
-            <img src="res/4.png" alt="Air Quality Index">
-          </div>
-          <h3 id="">Air Quality Index</h3>
-          </a>
-          </div>
-      </section> -->
+ 
       <section class="container-foooter">
        
     </section>
@@ -78,7 +47,7 @@
 <script src="/js/app.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        fetch('tools.html')
+        fetch('pages/tool.html')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok ' + response.statusText);
@@ -86,7 +55,7 @@
                 return response.text();
             })
             .then(data => {
-                document.querySelector('#tools').innerHTML = data;
+                document.querySelector('#tool').innerHTML = data;
             })
             .catch(error => console.error('Error fetching tools template:', error));
     });

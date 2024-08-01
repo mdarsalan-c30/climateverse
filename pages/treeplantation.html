@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Calculator</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .wrapper {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+       /* General Styling */
+/* General Styling */
+/* General Styling */
+#app {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Input and Button Styling */
+#calculator {
+  margin-top: 20px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #333;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  margin-top: 5px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+input:focus {
+  border-color: #007BFF;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  font-size: 16px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Result Styling */
+#result {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.hidden {
+  display: none;
+}
+
+#treeCount {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #28a745;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#treeSpecies,
+#plantingInfo {
+  font-size: 20px;
+  margin-top: 10px;
+  color: #555;
+}
+
+#treeSpecies {
+  color: #17a2b8;
+}
+
+#plantingInfo {
+  color: #6c757d;
+}
+
+/* Icons */
+.icon {
+  margin-right: 10px;
+}
+
+.icon-tree {
+  color: #28a745;
+}
+
+.icon-species {
+  color: #17a2b8;
+}
+
+.icon-info {
+  color: #6c757d;
+}
+
+/* Media Queries */
+@media (max-width: 600px) {
+  #app {
+    padding: 15px;
+  }
+
+  #treeCount,
+  #treeSpecies,
+  #plantingInfo {
+    font-size: 16px;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+  }
+}
+
+
+    </style>
+</head>
+<body>
+    <!--header section-->
+    <div id="header"></div>
+
+    <!--CONTENT SECTION-->
+    <div class="wrapper">
+        <div id="app">
+            <h1>Tree Planting Calculator</h1>
+            <div id="calculator">
+              <label for="carbonInput">Enter Your Carbon Footprint (tons of CO<sub>2</sub>):</label>
+              <input type="number" id="carbonInput" placeholder="e.g., 5" min="0">
+              
+              <label for="locationInput">Enter Your Location:</label>
+              <input type="text" id="locationInput" placeholder="e.g., New York">
+              
+              <button id="calculateBtn">Calculate</button>
+              
+              <div id="result" class="hidden">
+                <div id="treeCount"></div>
+                <div id="treeSpecies"></div>
+                <div id="plantingInfo"></div>
+              </div>
+            </div>
+          </div>
+    </div>
+
+    <!--footer section-->    
+    <div id="footer"></div>
+    <script src="app.js"></script>
+    <script>
+     const calculateBtn = document.getElementById('calculateBtn');
+const carbonInput = document.getElementById('carbonInput');
+const locationInput = document.getElementById('locationInput');
+const resultDiv = document.getElementById('result');
+const treeCountDiv = document.getElementById('treeCount');
+const treeSpeciesDiv = document.getElementById('treeSpecies');
+const plantingInfoDiv = document.getElementById('plantingInfo');
+
+// Example data for tree carbon sequestration rates (in tons CO2/year/tree)
+const treeData = {
+  "New York": { species: "Oak", rate: 0.039 },
+  "California": { species: "Redwood", rate: 0.068 },
+  "Texas": { species: "Pine", rate: 0.031 },
+  "default": { species: "Generic Tree", rate: 0.035 }
+};
+
+calculateBtn.addEventListener('click', () => {
+  const carbonFootprint = parseFloat(carbonInput.value);
+  const location = locationInput.value;
+
+  if (isNaN(carbonFootprint) || carbonFootprint <= 0 || location.trim() === '') {
+    alert('Please enter a valid carbon footprint and location.');
+    return;
+  }
+
+  const treeInfo = treeData[location] || treeData["default"];
+  const treesNeeded = Math.ceil(carbonFootprint / treeInfo.rate);
+
+  updateResult(treesNeeded, treeInfo.species, location);
+});
+
+function updateResult(trees, species, location) {
+  treeCountDiv.innerHTML = `<span class="icon icon-tree">🌳</span> You need to plant approximately <strong>${trees}</strong> ${species} trees to offset your carbon footprint.`;
+  treeSpeciesDiv.innerHTML = `<span class="icon icon-species">🌱</span> Recommended tree species for ${location}: <strong>${species}</strong>`;
+  plantingInfoDiv.innerHTML = `<span class="icon icon-info">📍</span> Check out local tree planting initiatives in ${location} to start making a difference!`;
+
+  resultDiv.classList.remove('hidden');
+}
+
+
+    </script>
+</body>
+</html>

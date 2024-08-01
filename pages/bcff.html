@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Calculator</title>
+    <style>
+        body, h3, label, input, button, p {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic body styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Tool styles */
+.tool {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+.tool label, .tool input, .tool button {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+.tool button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.tool button:hover {
+    background-color: #45a049;
+}
+
+#footprint-result {
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+    </style>
+</head>
+<body>
+    <div class="tool" id="carbon-footprint-calculator">
+        <h3>Carbon Footprint Calculator</h3>
+        <label for="miles">Miles driven per week:</label>
+        <input type="number" id="miles" name="miles">
+        <button onclick="calculateFootprint()">Calculate</button>
+        <p id="footprint-result"></p>
+    </div>
+    <script>
+        function calculateFootprint() {
+    const miles = document.getElementById('miles').value;
+    if (miles && !isNaN(miles)) {
+        const footprint = miles * 0.411; // Example calculation
+        document.getElementById('footprint-result').textContent = Your weekly carbon footprint from driving is approximately ${footprint.toFixed(2)} kg CO2.;
+    } else {
+        document.getElementById('footprint-result').textContent = 'Please enter a valid number of miles.';
+    }
+}
+    </script>
+</body>
+</html>
