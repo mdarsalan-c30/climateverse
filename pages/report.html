@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClimateVerse Reports and Data</title>
+    <link rel="stylesheet" href="/pages/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<style>
+    .wrapper {
+    max-width: 80%;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1, h2 {
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+p {
+    color: #555;
+    line-height: 1.6;
+}
+
+.data-section {
+    margin-bottom: 40px;
+}
+
+.data-section h2 {
+    margin-bottom: 10px;
+}
+
+.data-section p {
+    margin-bottom: 15px;
+}
+
+ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+a {
+    color: #4CAF50;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #388E3C;
+}
+
+#carbonFootprint, #plantationTool, #airQuality, #pledgeChallenge {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+</style>
+<body>
+    <!-- Header Section -->
+    <div id="header"></div>
+
+    <!-- Main Content Section -->
+    <div class="wrapper">
+        <h1 id="heading">Climate Reports and Data</h1>
+        <p>Explore the latest climate data, reports, and interactive tools to stay informed and take action.</p>
+
+        <!-- Carbon Footprint Calculator -->
+        <section class="data-section">
+            <h2>Carbon Footprint Calculator</h2>
+            <p>Use our carbon footprint calculator to estimate your personal or household emissions and learn how to reduce them.</p>
+            <div id="carbonFootprint">
+                <!-- Embed or link to your carbon footprint calculator here -->
+            </div>
+        </section>
+
+        <!-- Plantation Tool -->
+        <section class="data-section">
+            <h2>Plantation Tool Calculator</h2>
+            <p>Calculate the number of trees needed to offset your carbon footprint or contribute to reforestation efforts.</p>
+            <div id="plantationTool">
+                <!-- Embed or link to your plantation tool here -->
+            </div>
+        </section>
+
+        <!-- Air Quality Index -->
+        <section class="data-section">
+            <h2>Air Quality Index (AQI)</h2>
+            <p>Check the real-time air quality index for your location or any major city worldwide.</p>
+            <div id="airQuality">
+                <!-- Air Quality data will be displayed here -->
+            </div>
+        </section>
+
+        <!-- Climate Pledge Challenge -->
+        <section class="data-section">
+            <h2>Climate Pledge Challenge</h2>
+            <p>Join our Climate Pledge Challenge and commit to actions that reduce your environmental impact. Share your pledge and inspire others!</p>
+            <div id="pledgeChallenge">
+                <!-- Embed or link to the pledge challenge tool here -->
+            </div>
+        </section>
+
+        <!-- Latest Climate Reports -->
+        <section class="data-section">
+            <h2>Latest Climate Reports</h2>
+            <p>Access comprehensive reports on climate change, environmental policies, and sustainability initiatives.</p>
+            <ul id="climateReports">
+                <!-- List of reports will be populated here -->
+            </ul>
+        </section>
+
+        <!-- External Data Sources -->
+        <section class="data-section">
+            <h2>Data Sources</h2>
+            <p>Our data is sourced from trusted organizations like NASA, NOAA, and the World Health Organization.</p>
+            <ul>
+                <li><a href="https://climate.nasa.gov/" target="_blank">NASA Climate Change</a></li>
+                <li><a href="https://www.noaa.gov/climate" target="_blank">NOAA Climate</a></li>
+                <li><a href="https://www.who.int/health-topics/climate-change" target="_blank">WHO Climate Change and Health</a></li>
+                <!-- Add more sources as needed -->
+            </ul>
+        </section>
+    </div>
+
+    <!-- Footer Section -->
+    <div id="footer"></div>
+
+    <script src="app.js"></script>
+    <script>
+        // Fetching Air Quality Index (AQI) Data
+function fetchAQI() {
+    const apiKey = '9273e3e5bc439648fef1c7763b7beb03'; // Replace with a valid API key from an AQI data provider
+    const city = 'New York'; // Replace with a dynamic city value if needed
+    fetch(`https://api.waqi.info/feed/${city}/?token=${apiKey}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'ok') {
+                const aqi = data.data.aqi;
+                document.getElementById('airQuality').innerHTML = `<p>Current AQI for ${city}: ${aqi}</p>`;
+            } else {
+                document.getElementById('airQuality').innerHTML = `<p>Unable to fetch AQI data. Please try again later.</p>`;
+            }
+        })
+        .catch(error => console.error('Error fetching AQI data:', error));
+}
+
+fetchAQI();
+
+// Fetching Latest Climate Reports
+function fetchClimateReports() {
+    const apiKey = 'YOUR_NEWS_API_KEY_HERE'; // Replace with your news API key
+    const query = 'climate change reports';
+    fetch(`https://newsdata.io/api/1/news?apikey=${apiKey}&q=${query}`)
+        .then(response => response.json())
+        .then(data => {
+            const reports = data.results;
+            const reportList = document.getElementById('climateReports');
+            reports.forEach(report => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<a href="${report.link}" target="_blank">${report.title}</a>`;
+                reportList.appendChild(listItem);
+            });
+        })
+        .catch(error => console.error('Error fetching climate reports:', error));
+}
+
+fetchClimateReports();
+
+    </script>
+</body>
+</html>

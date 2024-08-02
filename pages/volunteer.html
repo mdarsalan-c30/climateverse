@@ -17,54 +17,74 @@
 }
 
 .wrapper {
-    max-width: 100%;
-    margin: 0px auto;
+    max-width: 80%;
+    margin: 50px auto;
     padding: 20px;
     background: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
-.donate-section {
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    max-width: 600px;
-}
 
-.donate-section h2 {
+h1, h2 {
     color: #4CAF50;
+}
+
+.introduction, .volunteer-opportunities, .impact-stories, .volunteer-benefits, .signup-form, .faq, .contact-info {
+    margin-bottom: 40px;
+}
+
+.opportunity, .story, .question {
     margin-bottom: 20px;
 }
 
-.donate-section p {
-    margin-bottom: 20px;
-    color: #555;
-    line-height: 1.6;
+label {
+    display: block;
+    margin: 10px 0 5px;
 }
 
-.donate-button {
+input, select, textarea, button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+button {
     background-color: #4CAF50;
     color: white;
-    padding: 15px 30px;
     border: none;
-    border-radius: 4px;
-    font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.donate-button:hover {
+button:hover {
     background-color: #45a049;
 }
 
-.donate-section small {
-    color: #999;
-    font-size: 12px;
+ul {
+    list-style-type: none;
+    padding: 0;
 }
 
+ul li {
+    padding-left: 1.5em;
+    text-indent: -1.5em;
+    margin-bottom: 10px;
+}
+
+.volunteer-opportunities{
+     ul li:before {
+    content: '\f058';
+    font-family: 'FontAwesome';
+    color: #4CAF50;
+    margin-right: 10px;
+}
+}
+.fas {
+    margin-right: 10px;
+    color: #4CAF50;
+}
 </style>
 <body>
     <!-- Header Section -->
@@ -72,20 +92,98 @@
 
     <!-- Wrapper Section -->
     <div class="wrapper">
-        <section class="donate-section">
-            <h2>Support Our Mission</h2>
-            <p>
-                Your contributions help us continue our work in raising awareness about climate change and providing valuable resources for our community. Every donation, no matter the size, helps us keep the website running and supports our ongoing efforts to make a positive impact.
-            </p>
-            <p>
-                By donating, you’re not just supporting a website—you’re investing in a cause that matters. Together, we can drive change and work towards a sustainable future.
-            </p>
-            <button class="donate-button">Donate Now</button>
-            <p>
-                <small>All donations are securely processed and go directly towards maintaining and improving our platform.</small>
-            </p>
+        <h1 id="heading">Volunteer with ClimateVerse</h1>
+
+        <!-- Introduction Section -->
+        <section class="introduction">
+            <p>Join our dedicated team of volunteers and make a positive impact on the environment. Whether you're passionate about spreading awareness or taking direct action, we have a role for you.</p>
         </section>
-        
+
+        <!-- Volunteer Opportunities Section -->
+        <section class="volunteer-opportunities">
+            <h2>Volunteer Opportunities</h2>
+            <div class="opportunity">
+                <h3><i class="fas fa-leaf"></i> Event Volunteer</h3>
+                <p>Assist in organizing and managing climate events. <strong>Skills required:</strong> Organization, Communication.</p>
+            </div>
+            <div class="opportunity">
+                <h3><i class="fas fa-users"></i> Community Outreach</h3>
+                <p>Engage with the community to spread climate awareness. <strong>Skills required:</strong> Public Speaking, Community Engagement.</p>
+            </div>
+            <!-- Add more opportunities as needed -->
+        </section>
+
+        <!-- Impact Stories Section -->
+        <section class="impact-stories">
+            <h2>Volunteer Impact Stories</h2>
+            <div class="story">
+                <h3><i class="fas fa-quote-left"></i> Aditya Roy</h3>
+                <p>"Volunteering with ClimateVerse has been an incredibly rewarding experience. It's inspiring to see the tangible impact we've made."</p>
+            </div>
+            <div class="story">
+                <h3><i class="fas fa-quote-left"></i>Ramsa</h3>
+                <p>"I've learned so much about environmental issues and met amazing people. I highly recommend getting involved."</p>
+            </div>
+        </section>
+
+        <!-- Volunteer Benefits Section -->
+        <section class="volunteer-benefits">
+            <h2>Benefits of Volunteering</h2>
+            <ul>
+                <li><i class="fas fa-check"></i> Develop new skills and gain valuable experience.</li>
+                <li><i class="fas fa-check"></i> Connect with like-minded individuals and expand your network.</li>
+                <li><i class="fas fa-check"></i> Contribute to meaningful projects that make a real difference.</li>
+                <li><i class="fas fa-check"></i> Earn certificates and recognition for your contributions.</li>
+            </ul>
+        </section>
+
+        <!-- Sign-Up Form Section -->
+        <section class="signup-form">
+            <h2>Sign Up to Volunteer</h2>
+            <form id="volunteerForm">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="interest">Area of Interest:</label>
+                <select id="interest" name="interest" required>
+                    <option value="event">Event Volunteer</option>
+                    <option value="outreach">Community Outreach</option>
+                    <!-- Add more options as needed -->
+                </select>
+
+                <label for="message">Why do you want to volunteer?</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq">
+            <h2>Frequently Asked Questions</h2>
+            <div class="question">
+                <h3>What is the time commitment for volunteering?</h3>
+                <p>The time commitment varies depending on the role. We offer both short-term and long-term opportunities to fit your schedule.</p>
+            </div>
+            <div class="question">
+                <h3>Do I need prior experience to volunteer?</h3>
+                <p>No prior experience is necessary. We provide all the training and support you'll need.</p>
+            </div>
+        </section>
+
+        <!-- Contact Information Section -->
+        <section class="contact-info">
+            <h2>Contact Us</h2>
+            <p>For more information, please contact our Volunteer Coordinator:</p>
+            <p>Email: <a href="primiumacc@protonmail.com">primiumacc@protonmail.com</a></p>
+            <p>Phone: 954005299</p>
+        </section>
     </div>
 
     <!-- Footer Section -->
@@ -93,10 +191,13 @@
 
     <script src="app.js"></script>
     <script>
-        document.querySelector('.donate-button').addEventListener('click', function() {
-    window.location.href = 'https://your-donation-link.com'; // Replace with your actual donation link
-});
-
+    document.getElementById('volunteerForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        alert('Thank you for signing up! We will contact you soon.');
+        this.reset();
+    });
+    
+    // Optional: You can add more interactive elements like expanding FAQs, animations, etc.
     </script>
 </body>
 </html>
