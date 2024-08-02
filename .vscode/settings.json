@@ -1,3 +1,4 @@
 {
-    "livePreview.defaultPreviewPath": "/res/calc/tool.html"
+    "livePreview.defaultPreviewPath": "/res/calc/tool.html",
+    "liveServer.settings.port": 5501
 }
