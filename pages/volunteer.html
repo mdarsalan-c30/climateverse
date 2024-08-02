@@ -3,65 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClimateVerse</title>
+    <title>ClimateVerse Volunteer</title>
     <link rel="stylesheet" href="/pages/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
 </head>
-<body>
-    <!--header section-->
-   <div id="header"></div>
-<!--CONTENT SECTION-->
 <style>
-    .wrapper {
-           max-width: 600px;
-           margin: 50px auto;
-           padding: 20px;
-           background: #fff;
-           box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-       }
-       #h9 {
-           color: #333;
-       }
-       #pp {
-           color: #555;
-       }
-      
-       label {
-           margin: 10px 0 5px;
-       }
-      
-       button {
-           margin-top: 20px;
-           padding: 10px;
-           background-color: #0056b3;
-           color: white;
-           border: none;
-           border-radius: 5px;
-           font-size: 16px;
-           cursor: pointer;
-       }
-      
-       @media (max-width: 600px) {
-           .container {
-               margin: 20px;
-               padding: 15px;
-           }
-       }
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.wrapper {
+    max-width: 100%;
+    margin: 0px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+.donate-section {
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 600px;
+}
+
+.donate-section h2 {
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+.donate-section p {
+    margin-bottom: 20px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.donate-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.donate-button:hover {
+    background-color: #45a049;
+}
+
+.donate-section small {
+    color: #999;
+    font-size: 12px;
+}
+
 </style>
 <body>
-   <!--header section-->
-   <div id="header"></div>
-   <div class="pattern-bg"></div>
-   <!-- Start of the IMG TO PDF CONVERTER -->
-   <div class="wrapper">
-      <h1>volunteer</h1>
-      </div>
+    <!-- Header Section -->
+    <div id="header"></div>
 
-<!--END OF CONTENR SECTION-->
-    
-   <!--footer section-->    
-<div id="footer"></div>
-<script src="app.js"></script>
+    <!-- Wrapper Section -->
+    <div class="wrapper">
+        <section class="donate-section">
+            <h2>Support Our Mission</h2>
+            <p>
+                Your contributions help us continue our work in raising awareness about climate change and providing valuable resources for our community. Every donation, no matter the size, helps us keep the website running and supports our ongoing efforts to make a positive impact.
+            </p>
+            <p>
+                By donating, you’re not just supporting a website—you’re investing in a cause that matters. Together, we can drive change and work towards a sustainable future.
+            </p>
+            <button class="donate-button">Donate Now</button>
+            <p>
+                <small>All donations are securely processed and go directly towards maintaining and improving our platform.</small>
+            </p>
+        </section>
+        
+    </div>
+
+    <!-- Footer Section -->
+    <div id="footer"></div>
+
+    <script src="app.js"></script>
+    <script>
+        document.querySelector('.donate-button').addEventListener('click', function() {
+    window.location.href = 'https://your-donation-link.com'; // Replace with your actual donation link
+});
+
+    </script>
 </body>
 </html>
